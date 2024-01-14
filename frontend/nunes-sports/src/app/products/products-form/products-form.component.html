@@ -1,0 +1,23 @@
+
+<form action="" [formGroup]="productsForm" (submit)="submit()">
+  <div>
+    <label for="code">Código: </label>
+    <input type="text" name="code" id="code" formControlName="code">
+  </div>
+  <div>
+    <label for="name">Nome: </label>
+    <input type="text" name="name" id="name" formControlName="name">
+  </div>
+  <div>
+    <label for="description">Descrição: </label>
+    <input type="text" name="description" id="description" formControlName="description">
+  </div>
+  <div>
+    <label for="price">Preço: </label>
+    <input type="number" name="price" id="price" formControlName="price">
+  </div>
+
+  <button type="submit">
+    Enviar
+  </button>
+</form>
