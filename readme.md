@@ -1,4 +1,4 @@
-### Seja Bem-Vindo ao Sistema Estoque Esperto!
+# Seja Bem-Vindo ao Sistema Estoque Esperto!
 
 O escopo desse sistema é o de um CRUD básico de produtos. Apesar de o domínio ser simples, eu quis explorar e experimentar um pouco com:
 
