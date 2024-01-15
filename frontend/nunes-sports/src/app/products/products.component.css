@@ -1,0 +1,94 @@
+
+.page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--neutrals-c);
+}
+
+.wrapper {
+  padding: var(--pad-big);
+  background-color: var(--neutrals-a);
+  border-radius: var(--border-rad-big);
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
+  font-size: var(--font-xbig);
+  padding: var(--pad-big);
+  padding-top: 0;
+}
+
+.table-container__content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.products-table {
+  border-radius: var(--border-rad-big);
+  background-color: gray;
+  overflow: hidden;
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.no-product-msg {
+  padding: var(--pad-sml);
+  text-align: center;
+}
+
+tr {
+  background-color: var(--neutrals-a);
+}
+tr:nth-child(2n + 1) {
+  background-color: var(--neutrals-b);
+}
+
+th {
+  background-color: var(--color-a);
+  padding: var(--pad-sml);
+}
+
+td {
+  text-align: center;
+}
+
+.default-button {
+  padding: var(--pad-sml);
+  margin: var(--margin-sml);
+  border: none;
+  border-radius: var(--border-rad-sml);
+  background-color: var(--color-a);
+  color: var(--neutrals-a);
+}
+.default-button:hover {
+  cursor: pointer;
+  box-shadow: var(--default-shadow);
+}
+
+.delete-product-button {
+  background-color: var(--color-danger);
+}
+
+.table-container__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.add-product-button {
+  margin: var(--margin-big);
+  padding: var(--pad-big);
+  border-radius: var(--border-rad-big);
+  font-size: var(--font-big);
+}

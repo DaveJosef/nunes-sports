@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { Product } from '../models/products';
 import { Router } from '@angular/router';
+import { prompt, showSuccessMessage } from '../utils/dialog';
 
 @Component({
   selector: 'app-products',
@@ -27,7 +28,7 @@ export class ProductsComponent implements OnInit {
         this.products = products;
       },
       error: (error) => {
-        console.log(error);
+        alert(error.message);
       }
     });
   }
@@ -40,15 +41,15 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['products/new'], { queryParams: { 'editing-uuid': uuid } });
   }
 
-  delete(product: Product) {
-    if (!confirm(`Tem certeza que quer excluir o produto: ${product.name}?`)) return;
+  async delete(product: Product) {
+    if (!((await prompt(`Tem certeza que quer excluir o produto: ${product.name}?`)).isConfirmed)) return;
 
     this.productsService.delete(product.uuid).subscribe({
-      next: (_) => {
-        alert('Produto excluído com sucesso!');
+      next: async (_) => {
+        await showSuccessMessage('Produto excluído com sucesso!');
       },
       error: (error) => {
-        console.log(error);
+        alert(error.message);
       },
       complete: () => {
         this.loadProducts();

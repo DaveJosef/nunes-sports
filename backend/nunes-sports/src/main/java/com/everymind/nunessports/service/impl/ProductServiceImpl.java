@@ -1,6 +1,7 @@
 package com.everymind.nunessports.service.impl;
 
 import com.everymind.nunessports.entity.Product;
+import com.everymind.nunessports.exception.CodeAlreadyExistsException;
 import com.everymind.nunessports.exception.ProductNotFoundException;
 import com.everymind.nunessports.repository.ProductRepository;
 import com.everymind.nunessports.service.IProductService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -18,7 +20,8 @@ public class ProductServiceImpl implements IProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public Product create(Product product) {
+    public Product create(Product product) throws CodeAlreadyExistsException {
+        verifyProductCodeAlreadyExists(product.getCode());
         return productRepository.save(product);
     }
 
@@ -50,5 +53,12 @@ public class ProductServiceImpl implements IProductService {
 
     private Product verifyIfExists(UUID uuid) throws ProductNotFoundException {
         return productRepository.findById(uuid).orElseThrow(() -> new ProductNotFoundException(uuid));
+    }
+
+    private void verifyProductCodeAlreadyExists(String code) throws CodeAlreadyExistsException {
+        Optional<Product> optionalProduct = productRepository.findByCode(code);
+        if (optionalProduct.isPresent()) {
+            throw new CodeAlreadyExistsException(code);
+        }
     }
 }
