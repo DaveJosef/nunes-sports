@@ -24,7 +24,7 @@ public class Product {
     @Column(unique = true)
     private String code;
 
-    @Column(length = 100)
+    @Column(length = 50)
     private String name;
 
     @Column(length = 200)
