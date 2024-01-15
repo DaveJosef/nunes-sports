@@ -1,23 +1,42 @@
+<div class="page">
+  <form class="wrapper form" action="" [formGroup]="productsForm" (submit)="submit()">
+    <div class="form__header">
+      <h2>{{ !uuid ? 'criar produto' : 'editar produto' }}</h2>
+    </div>
 
-<form action="" [formGroup]="productsForm" (submit)="submit()">
-  <div>
-    <label for="code">Código: </label>
-    <input type="text" name="code" id="code" formControlName="code">
-  </div>
-  <div>
-    <label for="name">Nome: </label>
-    <input type="text" name="name" id="name" formControlName="name">
-  </div>
-  <div>
-    <label for="description">Descrição: </label>
-    <input type="text" name="description" id="description" formControlName="description">
-  </div>
-  <div>
-    <label for="price">Preço: </label>
-    <input type="number" name="price" id="price" formControlName="price">
-  </div>
+    <div class="form__body">
+      <div class="input-box">
+        <label for="code">Código: </label>
+        <input type="text" name="code" id="code" formControlName="code">
+      </div>
+      <small *ngIf="productsForm.controls['code'].hasError('required') && (productsForm.controls['code'].touched || productsForm.controls['code'].dirty)" class="warning-label"><i class="fa-solid fa-triangle-exclamation"></i> Por favor, forneça um código</small>
+      <small *ngIf="productsForm.controls['code'].hasError('maxlength') && (productsForm.controls['code'].touched || productsForm.controls['code'].dirty)" class="warning-label"><i class="fa-solid fa-triangle-exclamation"></i> Por favor, forneça um código menor do que 9 dígitos</small>
 
-  <button type="submit">
-    Enviar
-  </button>
-</form>
+      <div class="input-box">
+        <label for="name">Nome: </label>
+        <input type="text" name="name" id="name" formControlName="name">
+      </div>
+      <small *ngIf="productsForm.controls['name'].hasError('required') && (productsForm.controls['name'].touched || productsForm.controls['name'].dirty)" class="warning-label"><i class="fa-solid fa-triangle-exclamation"></i> Por favor, forneça um nome</small>
+      <small *ngIf="productsForm.controls['name'].hasError('maxlength') && (productsForm.controls['name'].touched || productsForm.controls['name'].dirty)" class="warning-label"><i class="fa-solid fa-triangle-exclamation"></i> Por favor, forneça um nome menor do que 50 dígitos</small>
+
+      <div class="input-box">
+        <label for="description">Descrição: </label>
+        <textarea type="text" name="description" id="description" formControlName="description"></textarea>
+      </div>
+      <small *ngIf="productsForm.controls['description'].hasError('required') && (productsForm.controls['description'].touched || productsForm.controls['description'].dirty)" class="warning-label"><i class="fa-solid fa-triangle-exclamation"></i> Por favor, forneça uma descrição</small>
+      <small *ngIf="productsForm.controls['description'].hasError('maxlength') && (productsForm.controls['description'].touched || productsForm.controls['description'].dirty)" class="warning-label"><i class="fa-solid fa-triangle-exclamation"></i> Por favor, forneça uma descrição menor do que 200 dígitos</small>
+
+      <div class="input-box">
+        <label for="price">Preço: R$</label>
+        <input type="number" name="price" id="price" formControlName="price">
+      </div>
+      <small *ngIf="productsForm.controls['price'].hasError('required') && (productsForm.controls['price'].touched || productsForm.controls['price'].dirty)" class="warning-label"><i class="fa-solid fa-triangle-exclamation"></i> Por favor, forneça um preço</small>
+      <small *ngIf="productsForm.controls['price'].hasError('min') && (productsForm.controls['price'].touched || productsForm.controls['price'].dirty)" class="warning-label"><i class="fa-solid fa-triangle-exclamation"></i> Por favor, forneça um preço maior do que R$ 0,10</small>
+    </div>
+
+    <div class="form__footer">
+      <button class="default-button add-product-button" type="submit">Enviar</button>
+    </div>
+  </form>
+
+</div>

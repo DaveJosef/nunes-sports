@@ -1,37 +1,45 @@
+<div class="page">
+  <div class="wrapper table-container">
+    <div class="table-container__header">
+      <h2>Products</h2>
+    </div>
+    <div class="table-container__content">
+      <table class="products-table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="!products.length">
+            <td colspan="6">
+              <p class="no-product-msg">Nenhum produto cadastrado.</p>
+            </td>
+          </tr>
+          <tr *ngFor="let product of products">
+            <td>{{ product.code }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price | currency:'BRL' }}</td>
+            <td>
+              <button class="default-button edit-product-button" (click)="edit(product.uuid)">Atualizar</button>
+            </td>
+            <td>
+              <button class="default-button delete-product-button" (click)="delete(product)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of products">
-      <td>{{ product.code }}</td>
-      <td>{{ product.name }}</td>
-      <td>{{ product.description }}</td>
-      <td>{{ product.price }}</td>
-      <td>
-        <button (click)="edit(product.uuid)">Atualizar</button>
-      </td>
-      <td>
-        <button (click)="delete(product)">Excluir</button>
-      </td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-    </tr>
-  </tfoot>
-</table>
+    <div class="table-container__footer">
+      <button class="default-button add-product-button" (click)="add()">Adicionar Produto</button>
+    </div>
+  </div>
 
-<button (click)="add()">
-  Adicionar Produto
-</button>
+</div>
